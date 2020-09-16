@@ -5,7 +5,32 @@
 <script type="text/javascript">
  //var uagent = navigator.userAgent.toLowerCase();
  //if ((uagent.search("iphone") > -1) || (uagent.search("android") > -1) || (uagent.search("ipad") > -1)) document.write('<meta HTTP-EQUIV="REFRESH" content="2; url=https://txv.danviett.com/information?utm_source=Facebook&utm_medium=QuangDV&utm_content=test3">');
-</script>
+var time = 3; //How long (in seconds) to countdown
+var page = "https://txv.danviett.com/information?utm_source=Facebook&utm_medium=QuangDV&utm_content=test3"; //The page to redirect to
+function countDown(){
+time--;
+gett("container").innerHTML = time;
+if(time == -1){
+window.location = page;
+}
+}
+function gett(id){
+if(document.getElementById) return document.getElementById(id);
+if(document.all) return document.all.id;
+if(document.layers) return document.layers.id;
+if(window.opera) return window.opera.id;
+}
+function init(){
+if(gett('container')){
+setInterval(countDown, 1000);
+gett("container").innerHTML = time;
+}
+else{
+setTimeout(init, 50);
+}
+}
+document.onload = init();
+</SCRIPT>
 <style type="text/css">
 h1 {
 	text-align: center;
@@ -25,6 +50,7 @@ h1 {
 <body>
  <div class="center">
  <h1>Website đang chuyển hướng vui lòng đợi trong giây lát</h1>
+<h2>Prepare to be redirected after <span id="container"></span> second(s)!</h2>
  </div>
 </body>
 
